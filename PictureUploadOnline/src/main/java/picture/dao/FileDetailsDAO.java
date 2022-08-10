@@ -13,7 +13,6 @@ public class FileDetailsDAO {
 	Connection connection = null;
 	
 	// Attributes
-	
 	private String filename;
 	private String filepath; // Binary Stream = bytea in PostgreSQL 
 
@@ -33,8 +32,8 @@ public class FileDetailsDAO {
 			// Prepare SQL Statement
 			PreparedStatement addSQL = connection.prepareStatement
 			( "INSERT INTO filedetails "
-			+ "(filename, filedata, filepath) "
-			+ "VALUES (?,?,?)");
+			+ "(filename, filedata) "
+			+ "VALUES (?,?)");
 			
 	        File img = new File(filepath);
 	        
@@ -43,7 +42,6 @@ public class FileDetailsDAO {
 	        	// Set ? Values
 	        	addSQL.setString(1, filename);
 				addSQL.setBinaryStream(2, fileinputstream, (int)img.length());
-				addSQL.setString(3, filepath);
 				
 				// Execute SQL
 				addSQL.executeUpdate();
@@ -55,15 +53,11 @@ public class FileDetailsDAO {
 	        } catch (IOException e) {
 	        	e.printStackTrace();
 	        }
-
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		
-		
 	}
-
 
 }

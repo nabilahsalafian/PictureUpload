@@ -4,8 +4,7 @@ public class FileDetails {
 	
 	private int fileid;
 	private String filename;
-	private byte[] filedata;
-	private String filepath;
+	private String filepath; // replaces filedata in PostgreSQL, to store path of the file
 	
 	// Constructor
 	public FileDetails() {
@@ -21,9 +20,6 @@ public class FileDetails {
 		this.filename = filename;
 	}
 	
-	public void setFiledata(byte[] filedata) {
-		this.filedata = filedata;
-	}
 	
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
@@ -36,10 +32,6 @@ public class FileDetails {
 
 	public String getFilename() {
 		return filename;
-	}
-
-	public byte[] getFiledata() {
-		return filedata;
 	}
 
 	public String getFilepath() {

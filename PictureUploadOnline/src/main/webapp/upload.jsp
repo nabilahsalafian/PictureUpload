@@ -11,9 +11,9 @@
 <form method="post" enctype="multipart/form-data" >
 	Picture:<br>
 	<input type="file" accept="image/pdf" id="testFile" name="testFile"><br><br>
-	<button type="submit" formaction="FileServlet?action=addFile">Submit</button>
-	<button formaction="test.jsp">Test Page</button>
-	<button formaction="display.jsp">Display Page</button>
+	<button type="submit" formaction="FileServlet?action=addFile">Submit File</button>
+	<button formaction="find.jsp">Find Application Path</button>
+	<button formaction="FileServlet?action=getApplicationPath&page=display.jsp">Image Displayer</button>
 </form>
 
 </body>

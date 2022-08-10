@@ -16,7 +16,7 @@ import picture.javabean.*;
 
 public class FileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String UPLOAD_DIR = "images";
+	String UPLOAD_DIR = "images" + File.separator + "tempAddFiles";
 	FileDetailsDAO fdDAO = null;
 	HttpSession session = null;
 	
@@ -44,8 +44,8 @@ public class FileServlet extends HttpServlet {
 				addFile(request, response);
 				break;
 				
-			case "getUploadDirectory":
-				uploadDirectory(request, response);
+			case "getApplicationPath":
+				applicationPath(request, response);
 				break;
 			
 			}
@@ -110,18 +110,18 @@ public class FileServlet extends HttpServlet {
         
 	}
 	
-	private void uploadDirectory(HttpServletRequest request, HttpServletResponse response)
+	private void applicationPath(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, SQLException, IOException {
 	
 		String page = request.getParameter("page");
+		
 		// Create Temporary Path (Image Directory) for Image Storing in Server
 		String appPath = getServletContext().getRealPath("");
-		String uploadDirectory = appPath + UPLOAD_DIR;
-				
-		System.out.println("App Path: " + appPath);
-		System.out.println("Upload Path: " + uploadDirectory + "\n - - - ");
+		System.out.println("App Path: " + appPath + "\n - - - ");
 		
-		request.setAttribute("uploadPath", uploadDirectory);
+		session = request.getSession();
+		session.setAttribute("appPath", appPath);
+		
 		RequestDispatcher toPage = request.getRequestDispatcher(page);
         toPage.forward(request, response);
 		

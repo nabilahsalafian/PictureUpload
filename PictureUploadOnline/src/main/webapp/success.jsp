@@ -7,12 +7,12 @@
 <title>Success</title>
 </head>
 <body>
-<form>
-	Upload Success!
+<form method="post">
+	<h2>Upload Success!</h2>
 	<p>File name: <%= (String)request.getAttribute("filename") %></p>
 	<button formaction="upload.jsp">Back To Upload</button>
-	<button formaction="display.jsp">Image Displayer</button>
-	<button formaction="test.jsp">Test Page</button>
+	<button formaction="FileServlet?action=getApplicationPath&page=display.jsp">Image Displayer</button>
+	<button formaction="find.jsp">Find Application Path</button>
 </form>
 </body>
 </html>
