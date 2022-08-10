@@ -43,6 +43,10 @@ public class FileServlet extends HttpServlet {
 			case "addFile":
 				addFile(request, response);
 				break;
+				
+			case "getUploadDirectory":
+				uploadDirectory(request, response);
+				break;
 			
 			}
 			
@@ -106,5 +110,20 @@ public class FileServlet extends HttpServlet {
         
 	}
 	
+	private void uploadDirectory(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, SQLException, IOException {
 	
+		String page = request.getParameter("page");
+		// Create Temporary Path (Image Directory) for Image Storing in Server
+		String appPath = getServletContext().getRealPath("");
+		String uploadDirectory = appPath + UPLOAD_DIR;
+				
+		System.out.println("App Path: " + appPath);
+		System.out.println("Upload Path: " + uploadDirectory + "\n - - - ");
+		
+		request.setAttribute("uploadPath", uploadDirectory);
+		RequestDispatcher toPage = request.getRequestDispatcher(page);
+        toPage.forward(request, response);
+		
+	}
 }
